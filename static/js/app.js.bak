@@ -1,34 +1,23 @@
 function buildMetadata(sample) {
 
-  // @TODO: Complete the following function that builds the metadata panel
+console.log('hihi');
 
-  // Use `d3.json` to fetch the metadata for a sample
-    // Use d3 to select the panel with id of `#sample-metadata`
+   //Define the element to select
+	var cell = d3.select("#sample-metadata");
+	let url = `/metadata/${sample}`;
+//Clearing the html under the cell.
+	cell.html('');
 
-    // Use `.html("") to clear any existing metadata
+//Iterate the Json and post the value	
+d3.json(url).then((item) => {
+     Object.entries(item).forEach(([key, value]) => {
+       cell.append('text').html(`${key}: ${value}<br>`);
 
-    // Use `Object.entries` to add each key and value pair to the panel
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
+     });
+	 
+});
+	
 
-    // BONUS: Build the Gauge Chart
-    // buildGauge(data.WFREQ);
-	var url = `/metadata/${sample}`;
-	console.log(url)
-	//var obj = JSON.parse(data);
-	var value = d3.json(url).then(function(data){return data})
-	console.log(value)
-	//var result = JSON.stringify(value);
-	//console.log(result)
-
-	//val = [{"AGE":24.0,"BBTYPE":"I","ETHNICITY":"Caucasian","GENDER":"F","LOCATION":"Beaufort/NC","WFREQ":2.0,"sample":940}]
-	//console.log(val)
-	//val = [value]
-
-  Object.entries({"AGE":24.0,"BBTYPE":"I","ETHNICITY":"Caucasian","GENDER":"F","LOCATION":"Beaufort/NC","WFREQ":2.0,"sample":940}).forEach(([key, value]) => {
-    var cell = d3.select("#sample-metadata").append("ul");
-    cell.html(`<li class="test">${key}: ${value}</li>`).exit().remove();
-  });
 
 	
 }
@@ -73,6 +62,8 @@ function buildCharts(sample) {
 	}
 
 function init() {
+	
+	console.log('Suv');
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
 

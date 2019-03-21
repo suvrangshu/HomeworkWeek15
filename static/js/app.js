@@ -13,24 +13,22 @@ function buildMetadata(sample) {
 
     // BONUS: Build the Gauge Chart
     // buildGauge(data.WFREQ);
-	var url = `/metadata/${sample}`;
-	console.log(url)
-	//var obj = JSON.parse(data);
-	var value = d3.json(url).then(function(data){return data})
-	console.log(value)
-	//var result = JSON.stringify(value);
-	//console.log(result)
 
-	//val = [{"AGE":24.0,"BBTYPE":"I","ETHNICITY":"Caucasian","GENDER":"F","LOCATION":"Beaufort/NC","WFREQ":2.0,"sample":940}]
-	//console.log(val)
-	//val = [value]
+	var cell = d3.select("#sample-metadata");
+	let url = `/metadata/${sample}`;
+//Clearing the html under the cell.
+	cell.html('');
 
-  Object.entries({"AGE":24.0,"BBTYPE":"I","ETHNICITY":"Caucasian","GENDER":"F","LOCATION":"Beaufort/NC","WFREQ":2.0,"sample":940}).forEach(([key, value]) => {
-    var cell = d3.select("#sample-metadata").append("ul");
-    cell.html(`<li class="test">${key}: ${value}</li>`).exit().remove();
-  });
+//Iterate the Json and post the value	
+d3.json(url).then((item) => {
+     Object.entries(item).forEach(([key, value]) => {
+       /* cell.append('text').html(`${key}: ${value}<br>`); */
+	   cell.append('text').html(`${key}: ${value}<br>`);
+	   
+     });
+	 
+});
 
-	
 }
 
 function buildCharts(sample) {
@@ -42,18 +40,26 @@ function buildCharts(sample) {
     // @TODO: Build a Pie Chart
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
-        var url = `/samples/${sample}`;
-		console.log(url);
-        d3.json(url).then(function(data){
-			var layout = {
-				title: "'Bar' Chart",
+
+    var url = `/samples/${sample}`;
+
+    console.log(url);
+
+    d3.json(url).then(function(data){
+      var layout = {
+        title: "'Bar' Chart",
+        width:500,
+        height:500
 				};
  
-			var d = [{values:data["sample_values"].slice(0, 10),labels:data["otu_ids"].slice(0, 10),text:data["otu_labels"],hoverinfo:"text",type: "pie"}]
-			console.log(d)
-            Plotly.newPlot("pie", d,layout);
-			//Plotly.newPlot("plot", data, layout);
-        });
+		var d = [{values:data["sample_values"].slice(0, 10),labels:data["otu_ids"].slice(0, 10),text:data["otu_labels"],hoverinfo:"text",type: "pie"}]
+      
+    console.log(d)
+            
+    Plotly.newPlot("pie", d,layout);
+    
+    // //Plotly.newPlot("plot", data, layout);
+     });
 		
 		d3.json(url).then(function(data){
 			var trace1 = {x:data["otu_ids"],y:data["sample_values"],  mode: 'markers', marker: { color: data["otu_ids"],size: data["sample_values"]} }
@@ -65,12 +71,9 @@ function buildCharts(sample) {
 			//console.log(d)
             Plotly.newPlot("bubble", [trace1],layout);
 			//Plotly.newPlot("plot", data, layout);
-        });
+         });
 		
-		
-		
-	
-	}
+}
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -93,7 +96,6 @@ function init() {
 }
 
 function optionChanged(newSample) {
-	console.log("hi")
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);

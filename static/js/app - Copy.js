@@ -47,7 +47,7 @@ function buildCharts(sample) {
 
     d3.json(url).then(function(data){
       var layout = {
-        title: "Pie Chart",
+        title: "'Bar' Chart",
         width:500,
         height:500
 				};
@@ -62,7 +62,7 @@ function buildCharts(sample) {
      });
 		
 		d3.json(url).then(function(data){
-			var trace1 = {x:data["otu_ids"],y:data["sample_values"],  mode: 'markers', marker: { color: data["otu_ids"], size: data["sample_values"]} }
+			var trace1 = {x:data["otu_ids"],y:data["sample_values"],  mode: 'markers', marker: { color: data["otu_ids"],size: data["sample_values"]} }
 			var layout = {
 				title: 'Marker Size',
 				};

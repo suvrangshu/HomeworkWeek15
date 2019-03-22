@@ -2,10 +2,12 @@
 
 ## Homework week 15 , Interactive Visualizations.
 
-Suvrangshu Ghosh
+### Suvrangshu Ghosh
 
 Website screen captures when executed from local pc, showing change in selection is also changing the graphs.
+
 Image1#
+
 ![](file:///C:\Users\sghosh\Documents\Suv\Personal\Berkeley\homework\HomeworkWeek15\images\Clipboard01.png)
 
 Image2#

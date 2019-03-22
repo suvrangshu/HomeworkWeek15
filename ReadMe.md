@@ -8,10 +8,10 @@ Website screen captures when executed from local pc, showing change in selection
 
 Image1#
 
-![](file:///C:\Users\sghosh\Documents\Suv\Personal\Berkeley\homework\HomeworkWeek15\images\Clipboard01.png)
+![](images/Clipboard01.png)
 
 Image2#
-![](file:///C:\Users\sghosh\Documents\Suv\Personal\Berkeley\homework\HomeworkWeek15\images\Clipboard02.png)
+![](images/Clipboard02.png)
 
 Executing from Heroku app:
 
@@ -21,6 +21,6 @@ Link - https://tweetagram3.herokuapp.com/
 
 Screen captures, showing that the code is working from Heroku:
 
-![](file:///C:\Users\sghosh\Documents\Suv\Personal\Berkeley\homework\HomeworkWeek15\images\Herokuweb1.png)
+![](images/Herokuweb1.png)
 
 
